@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.digimon-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.navbar navbar-expand-lg navbar-light bg-light{
+    
+}
+body {
+  background-image: url('https://i.ytimg.com/vi/zsqAS1mALK8/maxresdefault.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+#found-digimon-container{
+color: black;
+}

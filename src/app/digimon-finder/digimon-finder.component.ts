@@ -1,29 +1,38 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DigimonApiService } from './services/digimon-api.service';
-import { APIResponse, APIResponseNew } from './interfaces/apiresponse';
+import { DigimonApiService } from '../services/digimon-api.service';
+import { APIResponse } from '../interfaces/apiresponse';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
+
+
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: 'app-digimon-finder',
+  imports: [RouterLink, RouterLinkActive, CommonModule],
+  templateUrl: './digimon-finder.component.html',
+  styleUrl: './digimon-finder.component.css'
 })
-export class AppComponent {
-  title = 'angular-project';
-  digimonData: APIResponse | undefined;
+export class DigimonFinderComponent {
+digimonData: APIResponse | undefined;
   errorMessage: string = '';
+  buttonClickedCheck :boolean = false
 
   constructor(private _digimonService: DigimonApiService) {}
 
+  buttonClicked(){
+      this.buttonClickedCheck = true
+  }
   getDigimonDetails(digimonName: string): boolean {
+    
     this._digimonService.getDigimonData(digimonName).subscribe(
       (data: APIResponse[]) => {
         if (data.length > 0) {
           this.digimonData = data[0];
+          this.buttonClicked();
+          if (this.digimonData.img)
+          {
           this._digimonService.sendDigimonDetails(data[0]).subscribe({})
+          }
           this.errorMessage = '';
         } else {
           this.digimonData = undefined;
@@ -37,8 +46,4 @@ export class AppComponent {
     );
     return false;
 }
-  
-
-
-
 }

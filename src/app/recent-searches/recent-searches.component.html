@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Digimon!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/recent-searches">Recent Searches <span class="sr-only">(current)</span></a>
+      </li>
+     
+    
+    </ul>
+   
+  </div>
+</nav>
+<div class="container">
+<div *ngIf="digimonData.length > 0;" class="digimon-container">
+  <div *ngFor="let digimon of digimonData" class="digimon-card">
+  
+    
+<div class="card my-3" style="width: 18rem;">
+  <img [src]="digimon.img" class="card-img-top" alt="{{ digimon.name }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ digimon.name }}</h5>
+    <p class="card-text">Level: {{ digimon.level }}</p>
+    <button class="btn btn-danger" (click)="deleteDigimon(digimon._id)" type="submit">
+      Delete
+    </button>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+
+   
